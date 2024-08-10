@@ -4,7 +4,7 @@
 - 💻 Skilled in Python and SQL
 - 🌱 I'm currently learning advanced data engineering techniques and Google Cloud Computing
 - 💞️ I'm looking to contribute to projects related to data management and big data
-- 📫 How to reach me: 🔗 Connect with me on [Email](gespinolabenitez@gmail.com)
+- 📫 How to reach me: gespinolabenitez@gmail.com
 - 🔗 Connect with me on [LinkedIn](https://www.linkedin.com/in/gabriel-espinola)
 
 <!---
