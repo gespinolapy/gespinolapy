@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs>
+    <!-- Background glow -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0b1220" stop-opacity="0.9"></stop>
+      <stop offset="60%" stop-color="#05070d" stop-opacity="0.9"></stop>
+      <stop offset="100%" stop-color="#000000" stop-opacity="1"></stop>
+    </radialGradient>
+
+    <!-- Neon gradients -->
+    <linearGradient id="neonA" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00E5FF"></stop>
+      <stop offset="1" stop-color="#7CFF6B"></stop>
+    </linearGradient>
+
+    <linearGradient id="neonB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7CFF6B"></stop>
+      <stop offset="1" stop-color="#00E5FF"></stop>
+    </linearGradient>
+
+    <!-- Soft shadow -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.6"></feDropShadow>
+    </filter>
+
+    <!-- Glow -->
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="b"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="b"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+
+    <!-- Animated scanline -->
+    <linearGradient id="scan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00E5FF" stop-opacity="0"></stop>
+      <stop offset="0.5" stop-color="#00E5FF" stop-opacity="0.12"></stop>
+      <stop offset="1" stop-color="#00E5FF" stop-opacity="0"></stop>
+    </linearGradient>
+
+    <style>
+      /* Title shimmer */
+      .title {
+        font: 800 44px/1.1 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+        letter-spacing: 0.12em;
+      }
+      .sub {
+        font: 500 16px/1.3 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+        letter-spacing: 0.08em;
+        opacity: 0.75;
+      }
+
+      /* Pulsing nodes */
+      .pulse {
+        animation: pulse 1.6s ease-in-out infinite;
+        transform-origin: center;
+      }
+      .pulse.d2 { animation-delay: .2s; }
+      .pulse.d3 { animation-delay: .4s; }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.85; }
+        50% { transform: scale(1.12); opacity: 1; }
+      }
+
+      /* Moving dots along the pipeline */
+      .dot {
+        animation: travel 2.8s linear infinite;
+      }
+      .dot.d2 { animation-delay: .6s; opacity: 0.85; }
+      .dot.d3 { animation-delay: 1.2s; opacity: 0.7; }
+
+      @keyframes travel {
+        from { offset-distance: 0%; }
+        to   { offset-distance: 100%; }
+      }
+
+      /* Subtle background noise lines */
+      .faint {
+        opacity: 0.08;
+      }
+
+      /* Scanline sweep */
+      .scanline {
+        animation: scan 3.6s ease-in-out infinite;
+      }
+      @keyframes scan {
+        0%   { transform: translateY(-40px); opacity: 0; }
+        15%  { opacity: .12; }
+        50%  { opacity: .16; }
+        85%  { opacity: .12; }
+        100% { transform: translateY(340px); opacity: 0; }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bgGlow)"></rect>
+
+  <!-- Decorative faint grid -->
+  <g class="faint" stroke="#7CFF6B" stroke-width="1">
+    <path d="M0 60 H1200"></path>
+    <path d="M0 120 H1200"></path>
+    <path d="M0 180 H1200"></path>
+    <path d="M0 240 H1200"></path>
+    <path d="M120 0 V300"></path>
+    <path d="M240 0 V300"></path>
+    <path d="M360 0 V300"></path>
+    <path d="M480 0 V300"></path>
+    <path d="M600 0 V300"></path>
+    <path d="M720 0 V300"></path>
+    <path d="M840 0 V300"></path>
+    <path d="M960 0 V300"></path>
+    <path d="M1080 0 V300"></path>
+  </g>
+
+  <!-- Scanline overlay -->
+  <rect class="scanline" x="0" y="0" width="1200" height="60" fill="url(#scan)"></rect>
+
+  <!-- Title -->
+  <g filter="url(#glow)">
+    <text x="70" y="82" class="title" fill="url(#neonA)">ETL PIPELINE</text>
+    <text x="72" y="110" class="sub" fill="#9BF7FF">extract • transform • load</text>
+  </g>
+
+  <!-- Pipeline track -->
+  <g filter="url(#softShadow)">
+    <!-- Track line -->
+    <path id="pipe" d="M160 190 C 320 120, 450 250, 610 180 S 900 120, 1040 190" fill="none" stroke="url(#neonA)" stroke-width="8" stroke-linecap="round" opacity="0.9"></path>
+    <path d="M160 190 C 320 120, 450 250, 610 180 S 900 120, 1040 190" fill="none" stroke="#00E5FF" stroke-width="2" stroke-linecap="round" opacity="0.35"></path>
+  </g>
+
+  <!-- Nodes: E, T, L -->
+  <g filter="url(#glow)">
+    <!-- Extract node -->
+    <g class="pulse">
+      <circle cx="160" cy="190" r="18" fill="#000" stroke="url(#neonB)" stroke-width="3"></circle>
+      <text x="160" y="196" text-anchor="middle" font-family="system-ui,Segoe UI,Roboto,Arial" font-weight="800" font-size="14" fill="#7CFF6B">E</text>
+    </g>
+    <text x="132" y="228" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="14" fill="#B8FFB0" opacity="0.85">Extract</text>
+
+    <!-- Transform node -->
+    <g class="pulse d2">
+      <circle cx="610" cy="180" r="18" fill="#000" stroke="url(#neonA)" stroke-width="3"></circle>
+      <text x="610" y="186" text-anchor="middle" font-family="system-ui,Segoe UI,Roboto,Arial" font-weight="800" font-size="14" fill="#00E5FF">T</text>
+    </g>
+    <text x="574" y="218" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="14" fill="#9BF7FF" opacity="0.85">Transform</text>
+
+    <!-- Load node -->
+    <g class="pulse d3">
+      <circle cx="1040" cy="190" r="18" fill="#000" stroke="url(#neonB)" stroke-width="3"></circle>
+      <text x="1040" y="196" text-anchor="middle" font-family="system-ui,Segoe UI,Roboto,Arial" font-weight="800" font-size="14" fill="#7CFF6B">L</text>
+    </g>
+    <text x="1015" y="228" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="14" fill="#B8FFB0" opacity="0.85">Load</text>
+  </g>
+
+  <!-- Animated moving dots along path -->
+  <g filter="url(#glow)">
+    <circle r="6" fill="#00E5FF" class="dot">
+      <animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#pipe"></mpath>
+      </animateMotion>
+    </circle>
+
+    <circle r="5" fill="#7CFF6B" class="dot d2">
+      <animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto" begin="0.6s">
+        <mpath href="#pipe"></mpath>
+      </animateMotion>
+    </circle>
+
+    <circle r="4" fill="#00E5FF" class="dot d3" opacity="0.8">
+      <animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto" begin="1.2s">
+        <mpath href="#pipe"></mpath>
+      </animateMotion>
+    </circle>
+  </g>
+
+  <!-- Footer tag -->
+  <g opacity="0.9">
+    <rect x="70" y="250" width="460" height="32" rx="16" fill="#05070d" stroke="url(#neonA)" stroke-width="1.5" opacity="0.85"></rect>
+    <text x="90" y="272" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="14" fill="#D7FBFF" opacity="0.9">
+      data engineering • orchestration • observability • quality checks
+    </text>
+  </g>
+</svg>
