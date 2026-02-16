@@ -62,7 +62,7 @@ Each repository contains documentation explaining the problem, approach and solu
 ## 📫 Contact
 
 - 📧 **Email:** gespinolabenitez@gmail.com  
-- 🔗 **LinkedIn:** *(add your link)*  
+- 🔗 **LinkedIn:** *www.linkedin.com/in/gabriel-espinola*  
 
 ---
 
